@@ -1,0 +1,10 @@
+base de palestra
+
+diretorios:
+
+/sandbox/ tem exemplos e instalacoes para gerar a palestra
+/talk/ tem os arquivos de rst que quando compilados geram o pdf
+/build/ tem o(s) pdfs compilados
+/brainstorm/ tem arquivos que eu usei para pensar na palestra e anotacoes
+
+aproveite!
