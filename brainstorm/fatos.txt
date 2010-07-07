@@ -1,0 +1,102 @@
+==============================
+Publico alvo
+
+==============================
+
+
+
+
+django 1.1 manage.py startapp cria a test.py
+
+speed increase 1.0 1.1
+
+testes trazem tranquilidade
+
+opniao imparcial:
+
+por que doctest e' fedorento
+
+    * eu nao gosto
+    * nao tem onde por: 
+        * inline suja os metodos se e' razoavel
+        * arquivo separado melhor fazer um unittest
+    * Alguem aqui usa utf8?
+        * ele nao
+    * pdb da trabalho para funcionar dificil de debugar
+
+    * sindrome de estocomo
+    >>> long(foo)
+    6L
+
+por que unittest.Testcase comanda
+    * tem o setUp e tearDown
+    * padrao
+    * #coding:utf8 (quase sempre resolve)
+
+por que o django.tests.Testcase comanda todos os batatais
+    * Test Client
+    * um monte de assertCoisas
+    * Test Client
+    * fixtures e urls
+    * Test Client
+    * mail
+    * e o Test Client
+
+*asserts
+In [2]: TestCase.assert
+TestCase.assert_                TestCase.assertAlmostEqual      TestCase.assertAlmostEquals     TestCase.assertContains         
+TestCase.assertEqual            TestCase.assertEquals           TestCase.assertFalse            TestCase.assertFormError        
+TestCase.assertNotAlmostEquals  TestCase.assertNotContains      TestCase.assertNotEqual         TestCase.assertNotEquals        
+TestCase.assertRaises           TestCase.assertRedirects        TestCase.assertTemplateNotUsed  TestCase.assertTemplateUsed     
+TestCase.assertTrue             TestCase.assertNotAlmostEqual   
+
+
+
+Test Client    
+    * windmill / selenium de pobre
+    * testa gets and posts
+    * metodo para login
+    * context
+    * tem o twill tambem
+
+
+(eu ja tenho um projeto entao agora nao da mais para fazer tdd)
+
+Regression Tests
+    * a coisa mais animal que existe
+    * bom inicio para por testes em um projeto ja existente
+    * pega um erro -> faz o teste que o erro acontece, faz o teste do que deveria acontecer -> corrige
+
+(outras coisas a saber)
+
+exotic testing:
+    * static source analysis
+    * smoke test
+    * monkey test
+    * load test
+
+Fuzz testing
+   * joga sujeira para ver se voce e' limpinho
+   * http://code.google.com/p/ratproxy/wiki/RatproxyDoc
+
+BDD
+  * pyccuracy: http://github.com/heynemann/pyccuracy
+
+como comecar:
+   * function testing e' um pe: testmaker salva
+   * ./manage.py testmaker <app>   
+
+http://github.com/garethr/django-test-extensions
+
+http://github.com/ericholscher/django-test-utils
+
+
+......................Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/logging/__init__.py", line 765, in emit
+    self.stream.write(fs % msg.encode("UTF-8"))
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 128: ordinal not in range(128)
+.................E..E.Traceback (most recent call last):
+  File "/System/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/logging/__init__.py", line 765, in emit
+    self.stream.write(fs % msg.encode("UTF-8"))
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 128: ordinal not in range(128)
+..........................

@@ -1,0 +1,13 @@
+based on this amazing post 
+
+http://lateral.netmanagers.com.ar/stories/BBS52.html
+
+Just creating the base to make presentations.
+
+you need 
+
+pip install rst2pdf==0.12 
+
+New versions give strange errors
+
+and just run ./build

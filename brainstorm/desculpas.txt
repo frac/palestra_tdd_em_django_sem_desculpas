@@ -1,0 +1,53 @@
+Desculpas
+=========
+
+
+
+#se um teste falha eu e' mais divertido apagar o teste
+
+#o teste e' mais complicado que o problema
+
+
+mas eu nao sei quais sao os asserts que existem
+
+
+e como testo exceptions?
+
+OK Eu conserto os testes depois (vai doer[muito])
+
+
+OK eu sou novato nessa de django/tdd nao sei por onde comecar
+
+
+==================
+Desculpas em ordem
+==================
+
+Eu meio que sei como fazer testes no Django
+    * intro de testes no django
+
+Eu sei mas tambem nao sei direito o que e' TDD
+    * intro de TDD
+
+mas TDD é muito lento(e por lento eu quero dizer chato )!
+    * TDD de smartpants
+
+Toda vez que eu tento da pau
+    * I don't do test-driven development; I do stupidity-driven testing. When I do something stupid, I write a test to make sure I don't do it again." --titus brown pycon '07
+    * write code to solve some problem
+    * watch code break in some obvious way
+    * write a test that tests that specific breakage
+    * lather, rinse, repeat.
+
+O teste é mais complicado que o problema
+    * sim e'
+
+Eu conserto os testes depois
+ou
+Se um teste falha eu e' mais divertido apagar o teste
+    * Vai doer
+        * MUITO
+
+muito lindo mas agora e' tarde demais meu projeto ja existe
+    * regression tests
+    * test_utils    

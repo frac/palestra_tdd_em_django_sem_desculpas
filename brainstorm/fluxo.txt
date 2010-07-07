@@ -1,0 +1,94 @@
+django-admin.py startproject foobar
+cd foobar/
+chmod +x manage.py
+
+vi settings.py
+{{{
+#settings.py
+import os
+PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+...
+config database
+...
+TEMPLATE_DIRS = (                                                                                                                                           
+    os.path.join(PROJECT_PATH,'templates'),                                                                                                                 
+) 
+
+INSTALLED_APPS = (
+    ...
+    'django.contrib.admin', #opcional
+    'south',
+    'django_nose',
+    'test_extensions',
+)
+
+ 
+}}}
+
+./manage.py test
+{{{
+nosetests --verbosity 1
+
+----------------------------------------------------------------------
+Ran 0 tests in 0.000s
+
+OK
+Destroying test database 'default'...    
+}}}
+
+./manage.py startapp forum
+cd forum/
+mkdir tests
+touch tests/__init__.py
+mv tests.py tests/test_models.py
+
+{{{
+from django.test import TestCase                                                                                                                            
+                                                                                                                                                            
+class ModelTest(TestCase):                                                                                                                                  
+    def test_modelexistence(self):                                                                                                                          
+        """                                                                                                                                                 
+        verifica se os models que eu quero estao la                                                                                                         
+        """                                                                                                                                                 
+        try:                                                                                                                                                
+            from foobar.forum.models import Topico                                                                                                         
+        except ImportError:                                                                                                                                
+            self.fail('O modelo topico nao foi criado ainda') 
+
+}}}
+
+
+{{{
+nosetests --verbosity 1
+F
+======================================================================
+FAIL: verifica se os models que eu quero estao la
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/fractal/palestras/fisl11/foobar/../foobar/forum/tests/test_models.py", line 18, in test_modelexistence
+    self.fail('O modelo topico nao foi criado ainda')
+AssertionError: O modelo topico nao foi criado ainda
+
+----------------------------------------------------------------------
+Ran 1 test in 0.003s
+}}}
+
+OPA! Perceba que eu ainda nao inclui o forum nos INSTALLED_APPS
+{{{
+#settings.py
+INSTALLED_APPS += ('foobar.forum',)
+#forum/models.py
+class Topico(models.Model):                                                                                                                                 
+    """representa um topico"""   
+    pass
+}}}
+
+{{{
+
+nosetests --verbosity 1
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.014s
+    
+}}} 
