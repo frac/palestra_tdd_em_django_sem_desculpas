@@ -24,11 +24,14 @@
     },    
     "simplePage": {
         "frames": [
-            ["15%", "5%", "100%", "50%"]
+            ["15%", "5%", "70%", "70%"]
         ],
         "showHeader" : false,
         "showFooter" : false,
-        "background" : "background.png"
+        "background" : "background.png",
+        "commands": [
+            [ "VALIGN", [ 0, 0 ], [ -1, -1 ], "TOP" ]
+        ] 
     },    
     "longPage": {
         "frames": [
