@@ -3,9 +3,230 @@
 
 .. raw:: pdf
 
-  PageBreak excusePage
+  PageBreak simplePage
+    
+Olá!
+----
+
+
+Por que testes?
+---------------
+
+Em uma palavra
+--------------
+
+Medo
+----
+
+Err..
+-----
+
+Tranquilidade
+-------------
+
+Tranquilidade de refatorar
+---------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+    
+Felicidade é um codigo com boa cobertura
+----------------------------------------
+
+O ecosistema de testes no python
+-----------------------------------
+
+* tipos
+
+* sabores
+
+* testrunners
+
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+
+Tipos de testes
+---------------
+
+    * Doctest
+
+    * unittest
+
+Sabores de testes
+-----------------
+
+    * Unitarios 
+
+    * Funcionais
+
+    * De Regressão
+
+    * Exótiocos
+     
+        * static source analysis
+        * smoke test
+        * load test
+
+TestRunners
+-----------
+Mais liberdade de como rolar os testes
+
+    * nose ou py.test
+
+
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+
+Opnião Imparcial
+----------------
+
+Porque doctests são fedorentos e unittest.TestCase comanda
+----------------------------------------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+Doctest
+-------
+
+    * Eu não gosto
+
+    * Não tem onde colocar
+
+    * utf8
+
+    * Difícil de debugar
+
+
+unittest.TestCase
+-----------------
+
+    * Tem o setUp e tearDown
+
+    * Padrão
+
+    * #coding:utf8 (quase sempre resolve)
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+
+
+Porque o django.tests.TestCase comanda todos os batatais
+---------------------------------------------------------
+
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+    
+django TestCase
+---------------
+
+    * Test Client
+
+    * um monte de assert úteis
+    
+    * Test Client
+    
+    * fixtures e urls
+    
+    * Test Client
+    
+    * mail
+    
+    * e tem o Test Client
+
+
+Test Client
+-----------
+    
+    * é o windmill / selenium de pobre
+
+    * Testa gets and posts e amigos
+
+    * Metodo para login no auth
+
+    * context, forms e templates
+
+    * Tem o twill também
+
+    * Ótimo para functional tests
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+
+
+nose
+----
+
+
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+Use Django TestCase sempre que possível
+---------------------------------------
+
+Porque você deveria estar testando
+-----------------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+Confiabilidade
+---------------------
+
+Código sem testes é quebrado conforme foi planejado
+  -- Jacob Kaplan-Moss
+
+
+Django 1.1
+----------
+
+ * startapp cria um tests.py
+
+ * Testes transacionados 
+    
+    * 30 x mais rápidos
+
+
+
+ 
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
     
 
+Eu adoraria estar testando mas...
+
+
+.. raw:: pdf
+
+  PageBreak excusePage
 
 
 Eu meio que sei o que é TDD
@@ -78,9 +299,6 @@ nose
 django-nose
 -----------
 
-test_extensions
----------------
-
 .. raw:: pdf
 
   PageBreak longPage
@@ -95,10 +313,8 @@ settings.py
     
     INSTALLED_APPS = (
         ...
-        'django.contrib.admin', # opcional
         'south', # migracoes
-        'django_nose',
-        'test_extensions',  
+        'django_nose', # depois do south 
     )
 
 .. raw:: pdf
@@ -237,14 +453,33 @@ testa
         
 
 
+Pera!
+-----
+
+Voce gastou 8 slides para escrever um pass?
 
 
 
 
+test_extensions
+---------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+settings.py
+-----------
 
 
-
-
+.. code-block:: python
+    
+    INSTALLED_APPS = (
+        ...
+        'south', # migracoes
+        'django_nose', # depois do south 
+        'test_extensions', # depois do south
+    )
 
 
 
@@ -254,8 +489,7 @@ testa
   PageBreak excusePage
     
 
-
-mas TDD é muito lento 
+Mas TDD é muito lento 
 ---------------------
 
 e por lento eu quero dizer chato
@@ -539,9 +773,8 @@ Como testo exceptions
   PageBreak longPage
 
 
-
-Fim
-----------
+Testar não é dificil, Voceê só precisa começar
+-----------------------------------------------
 
 .. code-block:: python
 
@@ -554,8 +787,8 @@ Fim
 
 
 
-Fim
-----------
+Testar não é dificil, Voceê só precisa começar
+-----------------------------------------------
 
 .. code-block:: python
 
