@@ -18,14 +18,12 @@ Eu meio que sei o que é TDD
 
 
 TDD
----
+-------
 
-intro de TDD
+Só escreve código quando teste falha
 
-.. code-block:: python
+Só escreve teste quando tudo passa
 
-    >>> foo = u"gato e cão"
-    >>> foo[3]
 
 .. raw:: pdf
 
@@ -39,13 +37,216 @@ Eu nunca fiz muitos testes no Django
 
   PageBreak longPage
 
-intro de testes no django
+Como fazer
 -------------------------
+
+.. code-block:: bash
+
+    $ django-admin.py startproject foobar
+    $ cd foobar/
+    $ chmod +x manage.py
+    $ vi settings.py
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+settings.py
+-----------
 
 .. code-block:: python
 
-    >>> foo = u"gato e cão"
-    >>> foo[3]
+    import os
+    PROJECT_PATH = os.path.abspath(
+                        os.path.split(__file__)[0])
+    ...
+    config database
+    ...
+    TEMPLATE_DIRS = (                                                                                                                                           
+        os.path.join(PROJECT_PATH,'templates'),                                                                                                                 
+    ) 
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+South
+-----
+
+Não é relevante mas te salva a vida em projetos grandes
+
+nose
+----
+
+django-nose
+-----------
+
+test_extensions
+---------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+settings.py
+-----------
+
+
+.. code-block:: python
+    
+    TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+    
+    INSTALLED_APPS = (
+        ...
+        'django.contrib.admin', #opcional
+        'south',
+        'django_nose',
+        'test_extensions',  
+    )
+
+.. raw:: pdf
+
+    PageBreak longPage
+
+Hora de testar
+---------------
+
+.. code-block:: python
+    
+
+    ./manage.py test
+
+
+Passou?
+-------
+.. code-block:: python
+    
+
+    ------------------------------------
+    Ran 0 tests in 0.000s
+
+    OK
+    Destroying test database 'default'...    
+
+TDD
+-------
+
+Só escreve código quando teste falha
+
+Só escreve teste quando tudo passa
+
+
+
+Passou? Escreve testes 
+--------------------------
+
+
+Colocamos mais Testes
+---------------------
+
+.. code-block:: bash
+    
+
+
+    ./manage.py startapp forum
+    cd forum/
+    mkdir tests
+    touch tests/__init__.py
+    mv tests.py tests/test_topico.py
+
+
+vi tests/test_topico.py
+------------------------
+
+.. code-block:: python
+
+    #coding:utf8
+    from django.test import TestCase                                                                                                                            
+                                                                                                                                                                
+    class TopicoTest(TestCase):                                                                                                                                  
+      def test_existe(self):                                                                                                                          
+        """ O topico esta la? """                                                                                                                                                 
+        try:                                                                                                                                                
+          from foobar.forum.models import Topico                                                                                                         
+        except ImportError:                                                                                                                                
+          self.fail('Não consegui importar') 
+
+
+Inclui a app no projeto
+------------------------
+
+.. code-block:: python
+
+    INSTALLED_APPS = (
+        ...
+        'foobar.forum',
+    )
+    
+
+
+.. raw:: pdf
+
+    PageBreak longPage
+
+Testa
+------------------------
+
+.. code-block:: python
+
+    F
+    ====================================
+    FAIL: O topico esta la?
+    ------------------------------------
+    Traceback (most recent call last):
+      File "test_topico", line 18, in test_existe
+        self.fail('Não consegui importar')
+    AssertionError: Não consegui importar
+    ------------------------------------
+    Ran 1 test in 0.003s
+
+
+TDD
+-------
+
+Só escreve código quando teste falha
+
+Só escreve teste quando tudo passa
+
+Falhou? Escreve código 
+--------------------------
+
+forum/models.py
+---------------
+
+.. code-block:: python
+
+    class Topico(models.Model):                                                                                                                                 
+        """representa um topico"""   
+        pass
+
+testa
+-----        
+
+.. code-block:: python
+
+    .
+    ------------------------------------
+    Ran 1 test in 0.014s
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 .. raw:: pdf
 
@@ -65,10 +266,6 @@ e por lento eu quero dizer chato
 TDD: Eu queria ter isso
 -----------------------
 
-.. code-block:: python
-
-    >>> foo = u"gato e cão"
-    >>> foo[3]
 
 .. raw:: pdf
 
@@ -97,10 +294,6 @@ I don't do test-driven development; I do stupidity-driven testing. When I do som
     * lather, rinse, repeat.
 
 
-.. code-block:: python
-
-    >>> foo = u"gato e cão"
-    >>> foo[3]
 
 .. raw:: pdf
 
@@ -136,7 +329,7 @@ Eu conserto os testes depois
 ou
 --
 
-Se um teste falha e' mais facil apagar o teste
+Se um teste falha e' mais fácil apagar o teste
 ----------------------------------------------
 
 .. raw:: pdf
@@ -151,11 +344,6 @@ amanha
 
     por que?
 
-
-.. code-block:: python
-
-    >>> foo = u"gato e cão"
-    >>> foo[3]
 
 .. raw:: pdf
 
@@ -177,10 +365,6 @@ pera olha so
     * test_utils
 
 
-.. code-block:: python
-
-    >>> foo = u"gato e cão"
-    >>> foo[3]
 
 .. raw:: pdf
 
@@ -188,46 +372,155 @@ pera olha so
 
 
 
-tem um monte de assertions
+tem um monte de assertions diferentes, né?
 ----------------------------------------------
 
 .. raw:: pdf
 
   PageBreak longPage
 
-pera olha so
+
+O!
 -----------------------
 
-    * regression tests
 
-    * test_utils
 
+Modo mais fácil:
+----------------
 
 .. code-block:: python
 
-    >>> foo = u"gato e cão"
-    >>> foo[3]
+    >>> from django.test import TestCase
+    >>> In [2]: TestCase.assert<tab><tab>
+
+
+asserts
+----------------
+
+.. code-block:: python
+
+
+    TestCase.assert_                TestCase.assertAlmostEqual      
+    TestCase.assertAlmostEquals     TestCase.assertContains         
+    TestCase.assertEqual            TestCase.assertEquals           
+    TestCase.assertFalse            TestCase.assertFormError        
+    TestCase.assertNotAlmostEquals  TestCase.assertNotContains      
+    TestCase.assertNotEqual         TestCase.assertNotEquals        
+    TestCase.assertRaises           TestCase.assertRedirects        
+    TestCase.assertTemplateNotUsed  TestCase.assertTemplateUsed     
+    TestCase.assertTrue             TestCase.assertNotAlmostEqual   
 
 .. raw:: pdf
 
   PageBreak simplePage
 
-
-
-como testo exceptions
----------------------
+vamos separar
+-------------
 
 .. raw:: pdf
 
   PageBreak longPage
 
-assim o'
+
+Asserts básicas
+----------------
+
+Essas você deve usar bastante
+
+.. code-block:: python
+
+    TestCase.assertTrue
+    TestCase.assertFalse
+
+    TestCase.assertEqual
+    TestCase.assertNotEqual
+
+Asserts amigáveis
+-----------------
+
+Essas facilitam a vida
+
+.. code-block:: python
+    
+    TestCase.assertContains
+    TestCase.assertNotContains
+
+    def test_welcome(self):
+        resp = self.client.get('/welcome/',{})
+        self.assertContains(resp, '<h1>Olá</h1>',200)
+
+
+Asserts amigåveis (cont)
+-------------------------
+
+.. code-block:: python
+    
+
+    TestCase.assertRedirects
+    TestCase.assertTemplateUsed
+    TestCase.assertTemplateNotUsed
+    TestCase.assertFormError
+
+
+
+WTF?
 -----------------------
 
 .. code-block:: python
 
-    >>> foo = u"gato e cão"
-    >>> foo[3]
+    TestCase.assertAlmostEqual      
+                 
+    TestCase.assertNotAlmostEqual          
+
+    
+.. raw:: pdf
+
+  PageBreak longPage
+
+verifique que não são quase iguais?
+-----------------------------------
+
+serio?
+
+Sim
+-----------------------------------
+
+.. code-block:: python
+
+    a = 1.21
+    b = 1.22
+    self.assertAlmostEqual(a,b,2)
+    self.assertNotAlmostEqual(a,b,3)
+
+    
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+           
+                    
+Assets que eu não uso
+-----------------------
+
+.. code-block:: python
+
+                        
+    TestCase.assertRaises                   
+
+
+Como testo exceptions
+-----------------------
+
+.. code-block:: python
+
+    try:                                                                                                                                                
+        foobar.bang():
+        self.fail('Bang tem que explodir')                                                                                                          
+    except ExplodingException:                                                                                                                                
+         pass
+
+
 
 
 
