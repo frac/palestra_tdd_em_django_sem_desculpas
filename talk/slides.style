@@ -22,6 +22,17 @@
         "showFooter" : false,
         "background" : "cover.png"
     },    
+    "excusePage": {
+        "frames": [
+            ["15%", "5%", "70%", "70%"]
+        ],
+        "showHeader" : false,
+        "showFooter" : false,
+        "background" : "excuse.png",
+        "commands": [
+            [ "VALIGN", [ 0, 0 ], [ -1, -1 ], "TOP" ]
+        ] 
+    },    
     "simplePage": {
         "frames": [
             ["15%", "5%", "70%", "70%"]

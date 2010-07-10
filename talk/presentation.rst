@@ -3,7 +3,7 @@
 
 .. raw:: pdf
 
-  PageBreak simplePage
+  PageBreak excusePage
     
 
 
@@ -27,7 +27,8 @@ Só escreve teste quando tudo passa
 
 .. raw:: pdf
 
-  PageBreak simplePage
+  PageBreak excusePage
+    
 
 
 Eu nunca fiz muitos testes no Django
@@ -71,11 +72,6 @@ settings.py
 
   PageBreak simplePage
 
-South
------
-
-Não é relevante mas te salva a vida em projetos grandes
-
 nose
 ----
 
@@ -99,8 +95,8 @@ settings.py
     
     INSTALLED_APPS = (
         ...
-        'django.contrib.admin', #opcional
-        'south',
+        'django.contrib.admin', # opcional
+        'south', # migracoes
         'django_nose',
         'test_extensions',  
     )
@@ -117,12 +113,6 @@ Hora de testar
 
     ./manage.py test
 
-
-Passou?
--------
-.. code-block:: python
-    
-
     ------------------------------------
     Ran 0 tests in 0.000s
 
@@ -138,11 +128,13 @@ Só escreve teste quando tudo passa
 
 
 
-Passou? Escreve testes 
+Passou 
 --------------------------
 
+Escreve testes
 
-Colocamos mais Testes
+
+Mais Testes, então
 ---------------------
 
 .. code-block:: bash
@@ -165,12 +157,19 @@ vi tests/test_topico.py
     from django.test import TestCase                                                                                                                            
                                                                                                                                                                 
     class TopicoTest(TestCase):                                                                                                                                  
-      def test_existe(self):                                                                                                                          
-        """ O topico esta la? """                                                                                                                                                 
-        try:                                                                                                                                                
-          from foobar.forum.models import Topico                                                                                                         
-        except ImportError:                                                                                                                                
-          self.fail('Não consegui importar') 
+
+
+Teste de importação
+------------------------
+
+.. code-block:: python
+
+    def test_existe(self):                                                                                                                          
+      """ O topico esta la? """                                                                                                                                                 
+      try:                                                                                                                                                
+        from foobar.forum.models import Topico                                                                                                         
+      except ImportError:                                                                                                                                
+        self.fail('Não consegui importar') 
 
 
 Inclui a app no projeto
@@ -213,8 +212,10 @@ Só escreve código quando teste falha
 
 Só escreve teste quando tudo passa
 
-Falhou? Escreve código 
+Falhou
 --------------------------
+
+Escreve código 
 
 forum/models.py
 ---------------
@@ -250,7 +251,8 @@ testa
 
 .. raw:: pdf
 
-  PageBreak simplePage
+  PageBreak excusePage
+    
 
 
 mas TDD é muito lento 
@@ -269,8 +271,8 @@ TDD: Eu queria ter isso
 
 .. raw:: pdf
 
-  PageBreak simplePage
-
+  PageBreak excusePage
+    
 
 
 Toda vez que eu tento da pau
@@ -297,7 +299,8 @@ I don't do test-driven development; I do stupidity-driven testing. When I do som
 
 .. raw:: pdf
 
-  PageBreak simplePage
+  PageBreak excusePage
+    
 
 
 
@@ -315,12 +318,13 @@ login test client
 
 .. code-block:: python
 
-    >>> foo = u"gato e cão"
+    >>> client
     >>> foo[3]
 
 .. raw:: pdf
 
-  PageBreak simplePage
+  PageBreak excusePage
+    
 
     
 Eu conserto os testes depois
@@ -347,10 +351,10 @@ amanha
 
 .. raw:: pdf
 
-  PageBreak simplePage
+  PageBreak excusePage
 
 
-muito lindo mas agora e' tarde demais meu projeto ja existe
+Agora é tarde demais meu projeto já existe
 ------------------------------------------------------------
 
 .. raw:: pdf
@@ -368,7 +372,7 @@ pera olha so
 
 .. raw:: pdf
 
-  PageBreak simplePage
+  PageBreak excusePage
 
 
 
@@ -446,11 +450,11 @@ Essas facilitam a vida
     TestCase.assertNotContains
 
     def test_welcome(self):
-        resp = self.client.get('/welcome/',{})
-        self.assertContains(resp, '<h1>Olá</h1>',200)
+      resp = self.client.get('/welcome/',{})
+      self.assertContains(resp, '<h1>Oi</h1>',200)
 
 
-Asserts amigåveis (cont)
+Asserts amigáveis (cont)
 -------------------------
 
 .. code-block:: python
@@ -480,7 +484,7 @@ WTF?
 verifique que não são quase iguais?
 -----------------------------------
 
-serio?
+sério?
 
 Sim
 -----------------------------------
