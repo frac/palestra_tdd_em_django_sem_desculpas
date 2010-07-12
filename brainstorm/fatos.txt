@@ -43,12 +43,6 @@ por que o django.tests.Testcase comanda todos os batatais
     * e o Test Client
 
 *asserts
-In [2]: TestCase.assert
-TestCase.assert_                TestCase.assertAlmostEqual      TestCase.assertAlmostEquals     TestCase.assertContains         
-TestCase.assertEqual            TestCase.assertEquals           TestCase.assertFalse            TestCase.assertFormError        
-TestCase.assertNotAlmostEquals  TestCase.assertNotContains      TestCase.assertNotEqual         TestCase.assertNotEquals        
-TestCase.assertRaises           TestCase.assertRedirects        TestCase.assertTemplateNotUsed  TestCase.assertTemplateUsed     
-TestCase.assertTrue             TestCase.assertNotAlmostEqual   
 
 
 
@@ -100,3 +94,142 @@ UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 128: ordina
     self.stream.write(fs % msg.encode("UTF-8"))
 UnicodeDecodeError: 'ascii' codec can't decode byte 0xc3 in position 128: ordinal not in range(128)
 ..........................
+
+
+
+
+
+
+
+Agora esquece tudo isso
+----------------
+
+Porque doctests são fedorentos e unittest.TestCase comanda
+----------------------------------------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+Doctest
+-------
+
+    * Eu não gosto
+
+    * Não tem onde colocar
+
+    * utf8
+
+    * Difícil de debugar
+
+
+unittest.TestCase
+-----------------
+
+    * Tem o setUp e tearDown
+
+    * Padrão
+
+    * #coding:utf8 (quase sempre resolve)
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+adendo
+-------
+
+Porque o django.tests.TestCase comanda todos os batatais
+---------------------------------------------------------
+
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+    
+django TestCase
+---------------
+
+    * Test Client
+
+    * um monte de assert úteis
+    
+    * Test Client
+    
+    * fixtures e urls
+    
+    * Test Client
+    
+    * mail
+    
+    * e tem o Test Client
+
+
+Test Client
+-----------
+    
+    * é o windmill / selenium de pobre
+
+    * Testa gets and posts e amigos
+
+    * Metodo para login no auth
+
+    * context, forms e templates
+
+    * Tem o twill também
+
+    * Ótimo para functional tests
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+nose
+----
+
+    * acha testes como py.test
+
+    * menos complicado que o py.test
+
+    * questão de gosto
+
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+Use Django TestCase sempre que possível
+---------------------------------------
+
+Porque você deveria estar testando
+-----------------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+Confiabilidade
+---------------------
+
+Código sem testes é quebrado conforme foi planejado
+  -- Jacob Kaplan-Moss
+
+
+Django 1.1+
+--------------
+
+ * startapp cria um tests.py
+
+ * Testes transacionados 
+    
+ * algo como 30 x mais rápidos
+
+
+
+ 
+

@@ -8,31 +8,95 @@
 Olá!
 ----
 
+2 coisas importantes para dizer
+--------------------------------
 
-Por que testes?
----------------
+Primeira: já é 2010
+----------------------
 
-Em uma palavra
+Segunda: Somos todos adultos
+-----------------------------
+
+Somos quase todos adultos
+--------------------------
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+
+Código sem testes é código já quebrado quando foi planejado
+  -- Jacob Kaplan-Moss
+
+
+    
+Então, chega de desculpas:
+---------------------------
+
+Testar não é dificil, Só precisa começar
+-----------------------------------------------
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+
+Mas....
+----------------------------------
+
+
+.. raw:: pdf
+
+  PageBreak excusePage
+
+
+Eu não preciso de testes automatizados
+---------------------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+Ciência da computação é tanto sobre computadores quanto como a astronomia é sobre telescópios
+---------------------------------------------------------------------------------------------
+ -- E W Dijkstra
+
+
+Test Driven Development é tanto sobre testes assim quanto a ciência da computação é sobre computadores
+------------------------------------------------------------------------------------------------------------
+
+TDD é sobre desenvolvimento e qualidade
+----------------------------------------
+
+Código evolve
 --------------
 
-Medo
-----
+Código evolve constantemente
+-----------------------------
 
-Err..
------
-
-Tranquilidade
--------------
+Se o seu código não tem testes refatorar ele é ou difícil ou um pesadelo
+------------------------------------------------------------------------- 
 
 Tranquilidade de refatorar
 ---------------------------
+
+Felicidade é um código com boa cobertura
+
+.. raw:: pdf
+
+  PageBreak excusePage
+
+
+Eu nao sei nada sobre testes
+-----------------------------------------------
+
+
 
 .. raw:: pdf
 
   PageBreak longPage
     
-Felicidade é um codigo com boa cobertura
-----------------------------------------
 
 O ecosistema de testes no python
 -----------------------------------
@@ -60,13 +124,13 @@ Tipos de testes
 Sabores de testes
 -----------------
 
-    * Unitarios 
+    * Unitários 
 
     * Funcionais
 
     * De Regressão
 
-    * Exótiocos
+    * Exóticos
      
         * static source analysis
         * smoke test
@@ -74,154 +138,28 @@ Sabores de testes
 
 TestRunners
 -----------
+
 Mais liberdade de como rolar os testes
-
-    * nose ou py.test
-
-
-
-
-.. raw:: pdf
-
-  PageBreak simplePage
-
-
-Opnião Imparcial
-----------------
-
-Porque doctests são fedorentos e unittest.TestCase comanda
-----------------------------------------------------------
-
-.. raw:: pdf
-
-  PageBreak longPage
-
-
-Doctest
--------
-
-    * Eu não gosto
-
-    * Não tem onde colocar
-
-    * utf8
-
-    * Difícil de debugar
-
-
-unittest.TestCase
------------------
-
-    * Tem o setUp e tearDown
 
     * Padrão
 
-    * #coding:utf8 (quase sempre resolve)
+    * nose ou py.test ou outros
 
 
-.. raw:: pdf
+Eu uso em 99% das vezes
+------------------------
 
-  PageBreak simplePage
+   * Django.test.TestCase
+   
+   * Unitario
 
+   * Funcional
 
+   * Regressao
 
-Porque o django.tests.TestCase comanda todos os batatais
----------------------------------------------------------
-
-
-.. raw:: pdf
-
-  PageBreak longPage
-
-
-    
-django TestCase
----------------
-
-    * Test Client
-
-    * um monte de assert úteis
-    
-    * Test Client
-    
-    * fixtures e urls
-    
-    * Test Client
-    
-    * mail
-    
-    * e tem o Test Client
+   * nose / django-nose
 
 
-Test Client
------------
-    
-    * é o windmill / selenium de pobre
-
-    * Testa gets and posts e amigos
-
-    * Metodo para login no auth
-
-    * context, forms e templates
-
-    * Tem o twill também
-
-    * Ótimo para functional tests
-
-.. raw:: pdf
-
-  PageBreak longPage
-
-
-
-
-nose
-----
-
-
-
-
-.. raw:: pdf
-
-  PageBreak simplePage
-
-Use Django TestCase sempre que possível
----------------------------------------
-
-Porque você deveria estar testando
------------------------------------
-
-.. raw:: pdf
-
-  PageBreak longPage
-
-Confiabilidade
----------------------
-
-Código sem testes é quebrado conforme foi planejado
-  -- Jacob Kaplan-Moss
-
-
-Django 1.1
-----------
-
- * startapp cria um tests.py
-
- * Testes transacionados 
-    
-    * 30 x mais rápidos
-
-
-
- 
-
-
-.. raw:: pdf
-
-  PageBreak simplePage
-    
-
-Eu adoraria estar testando mas...
 
 
 .. raw:: pdf
@@ -461,6 +399,26 @@ Voce gastou 8 slides para escrever um pass?
 
 
 
+.. raw:: pdf
+
+  PageBreak excusePage
+    
+
+Mas TDD é muito lento 
+---------------------
+
+e por lento eu quero dizer chato
+--------------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+Continous testing
+-----------------
+
+
 test_extensions
 ---------------
 
@@ -482,6 +440,22 @@ settings.py
     )
 
 
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+
+.. code-block:: bash
+
+    $ ./manage.py runtester    
+
+ou ainda 
+
+.. code-block:: bash
+
+    $ ./manage.py runtester forum    
+
 
 
 .. raw:: pdf
@@ -489,37 +463,37 @@ settings.py
   PageBreak excusePage
     
 
-Mas TDD é muito lento 
----------------------
 
-e por lento eu quero dizer chato
---------------------------------
+Eu começo com tdd mas acabo desistindo no meio
+-----------------------------------------------
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+2 jeitos de comecar com TDD
+---------------------------
 
 .. raw:: pdf
 
   PageBreak longPage
 
-TDD: Eu queria ter isso
+
+Primeiro: Eu queria ter isso TDD
+---------------------------------
+
+Você escreve nos testes a API que voce queria ter
+
+
+Degundo: SDT
 -----------------------
 
-
-.. raw:: pdf
-
-  PageBreak excusePage
-    
+Eu não faço TDD eu faco Stupidity-driven testing. Quando eu faco algo estúpido, eu escrevo um teste para garantir que eu não vou repetir isso de novo
+    --titus brown pycon '07
 
 
-Toda vez que eu tento da pau
-------------------------------------
-
-.. raw:: pdf
-
-  PageBreak longPage
-
-TDD: smartpants
------------------------
-
-I don't do test-driven development; I do stupidity-driven testing. When I do something stupid, I write a test to make sure I don't do it again." --titus brown pycon '07
+Em suma
+-------
 
     * write code to solve some problem
 
@@ -773,7 +747,7 @@ Como testo exceptions
   PageBreak longPage
 
 
-Testar não é dificil, Voceê só precisa começar
+Testar não é dificil, Você só precisa começar
 -----------------------------------------------
 
 .. code-block:: python
@@ -787,7 +761,7 @@ Testar não é dificil, Voceê só precisa começar
 
 
 
-Testar não é dificil, Voceê só precisa começar
+Testar não é dificil, Você só precisa começar
 -----------------------------------------------
 
 .. code-block:: python
