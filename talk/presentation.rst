@@ -11,13 +11,16 @@ Olá!
 2 coisas importantes para dizer
 --------------------------------
 
-Primeira: já é 2010
+Primeira: Estamos em 2010
 ----------------------
 
 Segunda: Somos todos adultos
 -----------------------------
 
 Somos quase todos adultos
+--------------------------
+
+Somos todos quase adultos
 --------------------------
 
 .. raw:: pdf
@@ -98,7 +101,7 @@ Eu nao sei nada sobre testes
   PageBreak longPage
     
 
-O ecosistema de testes no python
+O ecossistema de testes no python
 -----------------------------------
 
 * tipos
@@ -288,7 +291,7 @@ Passou
 Escreve testes
 
 
-Mais Testes, então
+Mais Testes, ent�o
 ---------------------
 
 .. code-block:: bash
@@ -297,9 +300,16 @@ Mais Testes, então
 
     ./manage.py startapp forum
     cd forum/
+
+Como eu testo no django
+------------------------
+
+.. code-block:: bash
+
+    rm tests.py
     mkdir tests
     touch tests/__init__.py
-    mv tests.py tests/test_topico.py
+    touch tests/test_topico.py
 
 
 vi tests/test_topico.py
@@ -485,7 +495,7 @@ Primeiro: Eu queria ter isso TDD
 Você escreve nos testes a API que voce queria ter
 
 
-Degundo: SDT
+Segundo: SDT
 -----------------------
 
 Eu não faço TDD eu faco Stupidity-driven testing. Quando eu faco algo estúpido, eu escrevo um teste para garantir que eu não vou repetir isso de novo
@@ -650,7 +660,7 @@ Essas você deve usar bastante
 Asserts amigáveis
 -----------------
 
-Essas facilitam a vida
+Essas facilitam a vida para testes funcionais
 
 .. code-block:: python
     
