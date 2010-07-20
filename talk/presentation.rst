@@ -12,7 +12,7 @@ Olá!
 --------------------------------
 
 Primeira: Estamos em 2010
-----------------------
+--------------------------
 
 Segunda: Somos todos adultos
 -----------------------------
@@ -23,12 +23,16 @@ Somos quase todos adultos
 Somos todos quase adultos
 --------------------------
 
+Alguma metodologia de testes você tem que estar usando
+-------------------------------------------------------
+
 .. raw:: pdf
 
   PageBreak simplePage
 
 
 Código sem testes é código já quebrado quando foi planejado
+-----------------------------------------------------------
   -- Jacob Kaplan-Moss
 
 
@@ -36,7 +40,7 @@ Código sem testes é código já quebrado quando foi planejado
 Então, chega de desculpas:
 ---------------------------
 
-Testar não é dificil, Só precisa começar
+Testar não é díficil, Só precisa começar
 -----------------------------------------------
 
 
@@ -78,20 +82,36 @@ Código evolve
 Código evolve constantemente
 -----------------------------
 
-Se o seu código não tem testes refatorar ele é ou difícil ou um pesadelo
-------------------------------------------------------------------------- 
+
+Se o seu código não tem testes refatorar ele é um pesadelo
+----------------------------------------------------------
+
+.. code-block:: bash
+    
+    $ cat  `find . | grep "py$" \
+             | grep -v migration` | wc 
+    47260  137031 4541546
+ 
 
 Tranquilidade de refatorar
 ---------------------------
 
 Felicidade é um código com boa cobertura
 
+.. code-block:: bash
+
+    $ cat  `find . | grep "py$" \
+             | grep test` | wc 
+    34108   89535 3902868
+
+
+
 .. raw:: pdf
 
   PageBreak excusePage
 
 
-Eu nao sei nada sobre testes
+Eu não sei nada sobre testes
 -----------------------------------------------
 
 
@@ -133,11 +153,7 @@ Sabores de testes
 
     * De Regressão
 
-    * Exóticos
-     
-        * static source analysis
-        * smoke test
-        * load test
+    * Outros (load, fuzz..)
 
 TestRunners
 -----------
@@ -146,19 +162,23 @@ Mais liberdade de como rolar os testes
 
     * Padrão
 
-    * nose ou py.test ou outros
+    * nose 
+
+    * py.test
+    
+    * outros
 
 
-Eu uso em 99% das vezes
+Meu estilo
 ------------------------
 
    * Django.test.TestCase
    
-   * Unitario
+   * Unitário (um por modelo)
 
-   * Funcional
+   * Funcional (um por app)
 
-   * Regressao
+   * Regressão (um método por erro)
 
    * nose / django-nose
 
@@ -182,9 +202,20 @@ Eu meio que sei o que é TDD
 TDD
 -------
 
-Só escreve código quando teste falha
 
-Só escreve teste quando tudo passa
+TDD
+-------
+
+Só escreve **código** quando testes falham
+
+
+
+TDD
+-------
+
+Só escreve **código** quando testes falham
+
+Só escreve **teste** quando testes passam
 
 
 .. raw:: pdf
@@ -229,35 +260,6 @@ settings.py
         os.path.join(PROJECT_PATH,'templates'),                                                                                                                 
     ) 
 
-
-.. raw:: pdf
-
-  PageBreak simplePage
-
-nose
-----
-
-django-nose
------------
-
-.. raw:: pdf
-
-  PageBreak longPage
-
-settings.py
------------
-
-
-.. code-block:: python
-    
-    TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
-    
-    INSTALLED_APPS = (
-        ...
-        'south', # migracoes
-        'django_nose', # depois do south 
-    )
-
 .. raw:: pdf
 
     PageBreak longPage
@@ -279,9 +281,9 @@ Hora de testar
 TDD
 -------
 
-Só escreve código quando teste falha
+Só escreve código quando testes falham
 
-Só escreve teste quando tudo passa
+Só escreve teste quando testes passam
 
 
 
@@ -291,7 +293,7 @@ Passou
 Escreve testes
 
 
-Mais Testes, ent�o
+Mais Testes, então
 ---------------------
 
 .. code-block:: bash
@@ -301,7 +303,7 @@ Mais Testes, ent�o
     ./manage.py startapp forum
     cd forum/
 
-Como eu testo no django
+Meu estilo (v.2)
 ------------------------
 
 .. code-block:: bash
@@ -353,6 +355,66 @@ Inclui a app no projeto
     PageBreak longPage
 
 Testa
+---------------
+
+.. code-block:: python
+    
+
+    ./manage.py test
+
+    ------------------------------------
+    Ran 0 tests in 0.000s
+
+    OK
+    Destroying test database 'default'...    
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+Opa?
+-----------
+0 testes?
+
+nose
+----
+
+Acha testes para você sem que você tenha que por eles no __init__.py
+
+Dá pra chamar o pdb no ponto em que falha ( --pdb-failures) (ou ipdb)
+
+
+django-nose
+-----------
+
+.. code-block:: bash
+
+   $ pip install nose
+   $ pip install django-nose
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+settings.py
+-----------
+
+
+.. code-block:: python
+    
+    TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+    
+    INSTALLED_APPS = (
+        ...
+        'south', # migracoes
+        'django_nose', # depois do south 
+    )
+
+
+
+
+
+Testa de novo
 ------------------------
 
 .. code-block:: python
@@ -372,9 +434,9 @@ Testa
 TDD
 -------
 
-Só escreve código quando teste falha
+Só escreve código quando testes falham
 
-Só escreve teste quando tudo passa
+Só escreve teste quando testes passam
 
 Falhou
 --------------------------
@@ -422,15 +484,31 @@ e por lento eu quero dizer chato
 
 .. raw:: pdf
 
-  PageBreak longPage
+  PageBreak simplePage
 
+Não quando você se acostuma
+-----------------------------
+
+O que me anima a fazer TDD
+---------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
 
 Continous testing
 -----------------
 
+Toda vez que você salva um arquivo ele rerola os testes
+
+Não confundir com Continous Integration
 
 test_extensions
 ---------------
+
+Faz isso para você
+
+Ainda é um pouco tosco
 
 .. raw:: pdf
 
@@ -438,7 +516,6 @@ test_extensions
 
 settings.py
 -----------
-
 
 .. code-block:: python
     
@@ -455,6 +532,8 @@ settings.py
   PageBreak longPage
 
 
+Rodando o servidor
+---------------------
 
 .. code-block:: bash
 
@@ -474,70 +553,167 @@ ou ainda
     
 
 
-Eu começo com tdd mas acabo desistindo no meio
+Eu começo com TDD mas acabo desistindo no meio
 -----------------------------------------------
 
 .. raw:: pdf
 
   PageBreak simplePage
 
-2 jeitos de comecar com TDD
----------------------------
+2 formas sustentáveis para começar e continuar com TDD
+------------------------------------------------------
+
+
+Primeiro: 
+----------
 
 .. raw:: pdf
 
   PageBreak longPage
 
 
-Primeiro: Eu queria ter isso TDD
----------------------------------
+TDD:Eu queria ter isso
+-------------------------
 
-Você escreve nos testes a API que voce queria ter
+Você escreve nos testes a API que você queria ter
+
+
+Eu queria que fosse assim:
+-----------------------------------
+
+.. code-block:: bash
+
+     def test_metodos(self):
+       topico = Topico()
+       self.assertTrue(hasattr(topico, 'titulo'))
+       self.assertTrue(hasattr(topico, 'replies'))
+
+Testa
+------
+
+.. code-block:: bash
+
+    F.
+    =================================================
+    FAIL: test_metodos (test_forum.TestForum)
+    -------------------------------------------------
+    Traceback (most recent call last):
+        self.assertTrue(hasattr(topico, 'titulo'))
+    AssertionError
+
+    --------------------------------------------------
+    Ran 2 tests in 0.002s
+    FAILED (failures=1)
+
+Implementa
+----------
+
+.. code-block:: python
+
+  class Topico(models.Model):
+    """representa um topico"""
+    titulo = models.CharField(max_length=64)
+  class Resposta(models.Model):
+    '''Uma resposta no topico'''
+    topico = models.ForeignKey(Topico, 
+                     related_name='replies')
+
+Testa
+------
+
+.. code-block:: bash
+    
+    ..
+    --------------------------------------------------
+    Ran 2 tests in 0.002s
+
+    OK
+
+Prós e Cons
+-----------
+
+ * Não é exatamente TDD
+
+ * Funciona
+  
+ * Mais rápido
+
+ * Você está perdendo cobertura
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
 
 
 Segundo: SDT
 -----------------------
 
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+SDT
+-----------------------
+
 Eu não faço TDD eu faco Stupidity-driven testing. Quando eu faco algo estúpido, eu escrevo um teste para garantir que eu não vou repetir isso de novo
-    --titus brown pycon '07
+    --Titus Brown pycon '07
 
 
 Em suma
 -------
 
-    * write code to solve some problem
+Escreve código para solucinar um problema
 
-    * watch code break in some obvious way
+Se o código quebrar de alguma forma besta
 
-    * write a test that tests that specific breakage
+Escreve um teste para isso nunca vai acontecer de novo
 
-    * lather, rinse, repeat.
+goto 10
 
 
+Prós e Cons
+-----------
+
+ * Não é TDD
+
+ * Funciona mas beira Cowboyismo
+  
+ * Cobertura só sobre o código mais frágil
+
+ * Lembra teste de regressão 
+
+
+
+Por que lembra um teste de regressão? 
+-------------------------------------
+
+Porque é.
+
+São testes de regressão para você mesmo.
 
 .. raw:: pdf
 
   PageBreak excusePage
     
 
+Escrever testes é mais complicado que o problema
+--------------------------------------------------
 
-
-O teste é mais complicado que o problema
------------------------------------------
 
 .. raw:: pdf
 
   PageBreak longPage
 
-Longo sim complicado nao
-------------------------
 
-login test client
+Longo sim, complicado não
+--------------------------
 
-.. code-block:: python
+Especialmente longo para testes funcionais
 
-    >>> client
-    >>> foo[3]
+Espera para eu mostrar o django_test_utils, o utlimo bastião dos preguiçosos
+
 
 .. raw:: pdf
 
@@ -548,45 +724,80 @@ login test client
 Eu conserto os testes depois
 ----------------------------
 
-ou
---
+.. raw:: pdf
 
-Se um teste falha e' mais fácil apagar o teste
-----------------------------------------------
+  PageBreak simplePage
 
+PFFFFFFFFFF!
+------------
 .. raw:: pdf
 
   PageBreak longPage
 
-amanha
+
+Continous integration
 -----------------------
-    * Vai doer
 
-        * MUITO
+Toda vez que voce comita servidor rola os testes
 
-    por que?
 
+Hudson
+-------
+:(
+
+
+Pony-build
+-----------------------------------------
+
+Python!
+
+Não precisa do hudson :)
 
 .. raw:: pdf
 
   PageBreak excusePage
 
-
-Agora é tarde demais meu projeto já existe
-------------------------------------------------------------
+Agora é tarde demais para TDD, meu projeto já existe
+--------------------------------------------------------------
 
 .. raw:: pdf
 
   PageBreak longPage
 
-pera olha so
+Pera! Olha só
 -----------------------
 
-    * regression tests
+    * Testes de Regressão
 
     * test_utils
 
+Testes de Regressão
+-------------------
 
+Garante que um erro que aconteceu nunca mais volte a acontecer
+
+Usado por todos os grandes projetos de software livre
+
+Mesmo você não vai fazer mais nenhuma forma de teste você tem que fazer esta
+
+Testes de Regressão
+-------------------
+
+Encontrou um erro escreve um teste que falha por causa do erro
+
+Quando o teste falha corrige o erro
+
+
+django-test-utils
+------------------
+
+Você começa o servidor
+
+.. code-block:: bash
+
+    ./manage.py testmaker -a forum
+
+E navega enquanto ele faz os testes
 
 .. raw:: pdf
 
@@ -594,7 +805,7 @@ pera olha so
 
 
 
-tem um monte de assertions diferentes, né?
+Mas eu não conheco todas as assertions
 ----------------------------------------------
 
 .. raw:: pdf
@@ -602,13 +813,15 @@ tem um monte de assertions diferentes, né?
   PageBreak longPage
 
 
-O!
+Bico
 -----------------------
 
 
 
 Modo mais fácil:
 ----------------
+
+no ./manage shell
 
 .. code-block:: python
 
@@ -631,13 +844,6 @@ asserts
     TestCase.assertRaises           TestCase.assertRedirects        
     TestCase.assertTemplateNotUsed  TestCase.assertTemplateUsed     
     TestCase.assertTrue             TestCase.assertNotAlmostEqual   
-
-.. raw:: pdf
-
-  PageBreak simplePage
-
-vamos separar
--------------
 
 .. raw:: pdf
 
@@ -666,10 +872,11 @@ Essas facilitam a vida para testes funcionais
     
     TestCase.assertContains
     TestCase.assertNotContains
-
+    
     def test_welcome(self):
-      resp = self.client.get('/welcome/',{})
-      self.assertContains(resp, '<h1>Oi</h1>',200)
+      resp = self.client.get('/',{})
+      self.assertContains(resp,'<h1>Oi</h1>'
+                            ,200)
 
 
 Asserts amigáveis (cont)
@@ -699,20 +906,17 @@ WTF?
 
   PageBreak longPage
 
-verifique que não são quase iguais?
------------------------------------
-
-sério?
-
-Sim
+Não quase iguais?
 -----------------------------------
 
 .. code-block:: python
 
     a = 1.21
     b = 1.22
-    self.assertAlmostEqual(a,b,2)
-    self.assertNotAlmostEqual(a,b,3)
+    #sao iguais ate a primeira casa
+    self.assertAlmostEqual(a,b,1)
+    #diferentes depois da segunda casa
+    self.assertNotAlmostEqual(a,b,2)
 
     
 .. raw:: pdf
@@ -731,7 +935,7 @@ Assets que eu não uso
     TestCase.assertRaises                   
 
 
-Como testo exceptions
+Testo assim:
 -----------------------
 
 .. code-block:: python
@@ -743,45 +947,33 @@ Como testo exceptions
          pass
 
 
-
-
-
-
-
-
-
-
-
 .. raw:: pdf
 
-  PageBreak longPage
+  PageBreak simplePage
 
 
-Testar não é dificil, Você só precisa começar
+Testar não é díficil, Você só precisa começar
 -----------------------------------------------
+
+Dúvidas?
+--------
+
+
+Referências
+-----------
 
 .. code-block:: python
 
-    referencias
+    github.com/ericholscher/django-test-utils
+    github.com/ctb/pony-build
 
-    Tdd em django
+    Tdd em django sem desculpas
     @fractal
     petrich@gmail.com
     creative commons (by) (sa)
 
 
 
-Testar não é dificil, Você só precisa começar
------------------------------------------------
-
-.. code-block:: python
-
-    referencias
-
-    Tdd em django
-    @fractal
-    petrich@gmail.com
-    creative commons (by) (sa)
 
 .. header::
 

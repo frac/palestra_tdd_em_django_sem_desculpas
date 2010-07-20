@@ -20,15 +20,15 @@
         ],
         "showHeader" : false,
         "showFooter" : false,
-        "background" : "cover.png"
+        "background" : "cover.svg"
     },    
     "excusePage": {
         "frames": [
-            ["15%", "5%", "70%", "70%"]
+            ["15%", "7%", "70%", "70%"]
         ],
         "showHeader" : false,
         "showFooter" : false,
-        "background" : "excuse.png",
+        "background" : "excuse.svg",
         "commands": [
             [ "VALIGN", [ 0, 0 ], [ -1, -1 ], "TOP" ]
         ] 
