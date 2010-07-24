@@ -3,45 +3,130 @@
 
 .. raw:: pdf
 
-  PageBreak simplePage
+  PageBreak longPage
     
-Olá!
-----
 
-2 coisas importantes para dizer
---------------------------------
+Código sem testes é código já quebrado quando foi planejado
+-----------------------------------------------------------
 
-Primeira: Estamos em 2010
+    -- Jacob Kaplan-Moss 
+
+    um dos criadores do django
+
+Estamos em 2010
 --------------------------
 
-Segunda: Somos todos adultos
------------------------------
 
-Somos quase todos adultos
---------------------------
+.. raw:: pdf
 
-Somos todos quase adultos
---------------------------
+  PageBreak imagePage
+    
+2010 > 1960
+--------------
 
-Alguma metodologia de testes você tem que estar usando
+.. image:: images/2550229291_d3af218c74_b.jpg
+    :width: 590px
+
+2010 > 1999
+--------------
+
+.. image:: images/3528603529_c8c948638b_o.jpg
+    :width: 590px
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+Alguma buzzword "ágil" você tem que estar usando
 -------------------------------------------------------
+
+    
+Buzzwords são quintessenciais 
+------------------------------
+Buzzwords trazem sinergia viral e o empowerment das melhores práticas para a cauda longa
+
+
+
+3 anos atrás
+-------------
+
+equipe:  >40 pessoas numa mesma sala
+
+escopo: Webapp em Tomcat
+
+buzzwords: Bodyshop típico: PMI, cmms.. (< 1999)
+
+
+2.5 anos atrás
+-----------------
+
+equipe:  5 pessoas espalhadas pelo mundo
+
+escopo: Modificações no nível de uma distro
+
+buzzwords: Scrum, cultura de testes, sprints, entregas semanais 
+
 
 .. raw:: pdf
 
   PageBreak simplePage
 
+5 > 40 
+-----------------------
 
-Código sem testes é código já quebrado quando foi planejado
------------------------------------------------------------
-  -- Jacob Kaplan-Moss
+.. raw:: pdf
+
+  PageBreak longPage
+
+Metodologias ágeis:
+-------------------
+
+Extreme Programing(XP)
+
+Scrum
+
+Kanban
+
+Feature Driven Develelopment (FDD)
+
+
+Práticas ágeis:
+---------------
+
+Test Driven Development (TDD)
+
+Behavior Driven Development (BDD)
+
+Code refactoring
+
+Continuous Integration
+
+Pair Programming
+
+Planning poker
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+TDD
+----
+
+Sustentável
+
+Fácil
+
+Não depende da gerência
+
 
 
     
 Então, chega de desculpas:
 ---------------------------
 
-Testar não é díficil, Só precisa começar
------------------------------------------------
+TDD não é díficil. Díficil é não fazer quando voce acostuma
+------------------------------------------------------------
 
 
 .. raw:: pdf
@@ -51,58 +136,6 @@ Testar não é díficil, Só precisa começar
 
 Mas....
 ----------------------------------
-
-
-.. raw:: pdf
-
-  PageBreak excusePage
-
-
-Eu não preciso de testes automatizados
----------------------------------------
-
-.. raw:: pdf
-
-  PageBreak longPage
-
-Ciência da computação é tanto sobre computadores quanto como a astronomia é sobre telescópios
----------------------------------------------------------------------------------------------
- -- E W Dijkstra
-
-
-Test Driven Development é tanto sobre testes assim quanto a ciência da computação é sobre computadores
-------------------------------------------------------------------------------------------------------------
-
-TDD é sobre desenvolvimento e qualidade
-----------------------------------------
-
-Código evolve
---------------
-
-Código evolve constantemente
------------------------------
-
-
-Se o seu código não tem testes refatorar ele é um pesadelo
-----------------------------------------------------------
-
-.. code-block:: bash
-    
-    $ cat  `find . | grep "py$" \
-             | grep -v migration` | wc 
-    47260  137031 4541546
- 
-
-Tranquilidade de refatorar
----------------------------
-
-Felicidade é um código com boa cobertura
-
-.. code-block:: bash
-
-    $ cat  `find . | grep "py$" \
-             | grep test` | wc 
-    34108   89535 3902868
 
 
 
@@ -124,11 +157,11 @@ Eu não sei nada sobre testes
 O ecossistema de testes no python
 -----------------------------------
 
-* tipos
+* Tipos
 
-* sabores
+* Sabores
 
-* testrunners
+* TestRunners
 
 
 .. raw:: pdf
@@ -140,32 +173,39 @@ O ecossistema de testes no python
 Tipos de testes
 ---------------
 
-    * Doctest
+    * Doctest 
 
-    * unittest
+    * Unittest
+
+        unittest.TestCase 
+        
+        django.test.TestCase
+
 
 Sabores de testes
------------------
+------------------------------
 
     * Unitários 
+       Nível de função
 
-    * Funcionais
+    * Integração
+       Entre Módulos
 
     * De Regressão
+       Correção de bugs
 
-    * Outros (load, fuzz..)
 
 TestRunners
 -----------
 
-Mais liberdade de como rolar os testes
+Acha e Roda os testes
 
     * Padrão
 
-    * nose 
-
     * py.test
     
+    * nose 
+
     * outros
 
 
@@ -174,14 +214,68 @@ Meu estilo
 
    * Django.test.TestCase
    
-   * Unitário (um por modelo)
+   * Unitário 
+        Um TestCase por modelo
+        
+        Um ou mais testes por função
 
-   * Funcional (um por app)
+   * Integração 
+        Um por TestCase por conjunto de apps
 
-   * Regressão (um método por erro)
+   * Regressão 
+        Um teste por erro
 
    * nose / django-nose
+        Acha testes
 
+
+
+.. raw:: pdf
+
+  PageBreak excusePage
+
+
+Eu não preciso de testes automatizados
+---------------------------------------
+
+Gente que faz testes é porque não tem autoconfiança
+----------------------------------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+Código evolve constantemente
+-----------------------------
+
+
+Se o seu código não tem testes refatorar ele é um pesadelo
+----------------------------------------------------------
+
+
+Imagina isso 
+-------------
+
+.. code-block:: bash
+    
+    $ cat  `find . | grep "py$" \
+             | grep -v migration` | wc -l
+    47260 
+      
+Agora isso:
+-----------
+
+.. code-block:: bash
+
+    $ cat  `find . | grep "py$" \
+             | grep test` | wc -l 
+    34108
+
+
+Tranquilidade de refatorar
+---------------------------
+
+Felicidade é um código com boa cobertura
 
 
 
@@ -197,6 +291,21 @@ Eu meio que sei o que é TDD
 .. raw:: pdf
 
   PageBreak longPage
+
+
+Ciência da computação é tanto sobre computadores quanto como a astronomia é sobre telescópios
+---------------------------------------------------------------------------------------------
+ -- E W Dijkstra
+
+
+Test Driven Development é tanto sobre testes assim quanto a ciência da computação é sobre computadores
+------------------------------------------------------------------------------------------------------------
+
+TDD é sobre desenvolvimento e qualidade
+----------------------------------------
+
+Código evolve
+--------------
 
 
 TDD
@@ -546,6 +655,160 @@ ou ainda
     $ ./manage.py runtester forum    
 
 
+.. raw:: pdf
+
+  PageBreak excusePage
+
+
+
+Mas eu não conheco todas as assertions
+----------------------------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+Bico
+-----------------------
+
+
+
+Modo mais fácil:
+----------------
+
+no ./manage shell (com ipython instalado)
+
+.. code-block:: python
+
+    >>> from django.test import TestCase
+    >>> In [2]: TestCase.assert<tab><tab>
+
+
+asserts
+----------------
+
+.. code-block:: python
+
+
+    TestCase.assert_                TestCase.assertAlmostEqual      
+    TestCase.assertAlmostEquals     TestCase.assertContains         
+    TestCase.assertEqual            TestCase.assertEquals           
+    TestCase.assertFalse            TestCase.assertFormError        
+    TestCase.assertNotAlmostEquals  TestCase.assertNotContains      
+    TestCase.assertNotEqual         TestCase.assertNotEquals        
+    TestCase.assertRaises           TestCase.assertRedirects        
+    TestCase.assertTemplateNotUsed  TestCase.assertTemplateUsed     
+    TestCase.assertTrue             TestCase.assertNotAlmostEqual   
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+Asserts básicas
+----------------
+
+Essas você deve usar bastante
+
+.. code-block:: python
+
+    assertTrue(True)
+    assertFalse(False)
+
+    assertEqual(1,1)
+    assertNotEqual(1,2)
+
+Asserts amigáveis
+-----------------
+
+Essas facilitam a vida para testes funcionais
+
+.. code-block:: python
+    
+    assertContains(response,texto,status)
+    assertNotContains(response,texto,status)
+    
+exemplo
+------------------
+
+.. code-block:: python
+        
+    def test_welcome(self):
+      resp = self.client.get('/',{})
+      self.assertContains(resp,'<h1>Oi</h1>'
+                            ,200)
+
+
+Asserts amigáveis (cont)
+-------------------------
+
+.. code-block:: python
+    
+
+    assertRedirects(response,nova_url)
+    assertTemplateUsed(response,template)
+    assertTemplateNotUsed(response,template)
+    assertFormError(response,form,fields,errors)
+
+
+
+WTF?
+-----------------------
+
+.. code-block:: python
+
+    assertAlmostEqual      
+                 
+    assertNotAlmostEqual          
+
+    
+.. raw:: pdf
+
+  PageBreak longPage
+
+Não quase iguais?
+-----------------------------------
+
+.. code-block:: python
+
+    a = 1.21
+    b = 1.22
+    #sao iguais ate a primeira casa
+    self.assertAlmostEqual(a,b,1)
+    #diferentes depois da segunda casa
+    self.assertNotAlmostEqual(a,b,2)
+
+    
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+           
+                    
+Asserts que eu não uso
+-----------------------
+
+.. code-block:: python
+
+                        
+    assertRaises                   
+
+
+Testo assim:
+-----------------------
+
+.. code-block:: python
+
+    try:                                                                                                                                                
+        foobar.bang():
+        self.fail('Bang tem que explodir')                                                                                                          
+    except ExplodingException:                                                                                                                                
+        pass
+
+
+
 
 .. raw:: pdf
 
@@ -712,7 +975,70 @@ Longo sim, complicado não
 
 Especialmente longo para testes funcionais
 
-Espera para eu mostrar o django_test_utils, o utlimo bastião dos preguiçosos
+django_test_utils, o utlimo bastião dos preguiçosos
+
+
+django-test-utils
+------------------
+
+.. code-block:: bash
+
+    $ pip install django-test-utils
+
+settings.py
+-----------
+
+.. code-block:: python
+    
+    INSTALLED_APPS = (
+        ...
+        'south', # migracoes
+        'django_nose', # depois do south 
+        'test_extensions', # depois do south
+        'test_utils', # depois do south
+        ...
+    )
+
+
+
+Você começa o servidor
+----------------------
+
+.. code-block:: bash
+
+    $ ./manage.py testmaker -a forum
+
+
+Navega enquanto ele faz os testes
+---------------------------------
+
+
+Quando você termina
+---------------------------------
+
+.. code-block:: bash
+
+    $ cd forum/tests
+    $ ls forum*
+    forum_testdata.serialized  
+    forum_testmaker.py  
+
+
+
+Testes gerados
+---------------------------------
+
+.. code-block:: python
+
+    def test_forum_127958317459(self):
+      r = self.client.get('/forum/', {})
+      self.assertEqual(r.status_code, 200)
+      self.assertEqual(
+        unicode(r.context["paginator"]), u"None")
+      self.assertEqual(
+        unicode(r.context["object_list"]), 
+          u"[<Topico: Topico object>, <Topico: Topico object>]")
+      .....
 
 
 .. raw:: pdf
@@ -730,28 +1056,6 @@ Eu conserto os testes depois
 
 PFFFFFFFFFF!
 ------------
-.. raw:: pdf
-
-  PageBreak longPage
-
-
-Continous integration
------------------------
-
-Toda vez que voce comita servidor rola os testes
-
-
-Hudson
--------
-:(
-
-
-Pony-build
------------------------------------------
-
-Python!
-
-Não precisa do hudson :)
 
 .. raw:: pdf
 
@@ -769,7 +1073,7 @@ Pera! Olha só
 
     * Testes de Regressão
 
-    * test_utils
+    * django_test_utils
 
 Testes de Regressão
 -------------------
@@ -788,182 +1092,42 @@ Encontrou um erro escreve um teste que falha por causa do erro
 Quando o teste falha corrige o erro
 
 
-django-test-utils
-------------------
-
-Você começa o servidor
-
-.. code-block:: bash
-
-    ./manage.py testmaker -a forum
-
-E navega enquanto ele faz os testes
-
-.. raw:: pdf
-
-  PageBreak excusePage
-
-
-
-Mas eu não conheco todas as assertions
-----------------------------------------------
-
-.. raw:: pdf
-
-  PageBreak longPage
-
-
-Bico
------------------------
-
-
-
-Modo mais fácil:
-----------------
-
-no ./manage shell
-
-.. code-block:: python
-
-    >>> from django.test import TestCase
-    >>> In [2]: TestCase.assert<tab><tab>
-
-
-asserts
-----------------
-
-.. code-block:: python
-
-
-    TestCase.assert_                TestCase.assertAlmostEqual      
-    TestCase.assertAlmostEquals     TestCase.assertContains         
-    TestCase.assertEqual            TestCase.assertEquals           
-    TestCase.assertFalse            TestCase.assertFormError        
-    TestCase.assertNotAlmostEquals  TestCase.assertNotContains      
-    TestCase.assertNotEqual         TestCase.assertNotEquals        
-    TestCase.assertRaises           TestCase.assertRedirects        
-    TestCase.assertTemplateNotUsed  TestCase.assertTemplateUsed     
-    TestCase.assertTrue             TestCase.assertNotAlmostEqual   
-
-.. raw:: pdf
-
-  PageBreak longPage
-
-
-Asserts básicas
-----------------
-
-Essas você deve usar bastante
-
-.. code-block:: python
-
-    TestCase.assertTrue
-    TestCase.assertFalse
-
-    TestCase.assertEqual
-    TestCase.assertNotEqual
-
-Asserts amigáveis
------------------
-
-Essas facilitam a vida para testes funcionais
-
-.. code-block:: python
-    
-    TestCase.assertContains
-    TestCase.assertNotContains
-    
-    def test_welcome(self):
-      resp = self.client.get('/',{})
-      self.assertContains(resp,'<h1>Oi</h1>'
-                            ,200)
-
-
-Asserts amigáveis (cont)
--------------------------
-
-.. code-block:: python
-    
-
-    TestCase.assertRedirects
-    TestCase.assertTemplateUsed
-    TestCase.assertTemplateNotUsed
-    TestCase.assertFormError
-
-
-
-WTF?
------------------------
-
-.. code-block:: python
-
-    TestCase.assertAlmostEqual      
-                 
-    TestCase.assertNotAlmostEqual          
-
-    
-.. raw:: pdf
-
-  PageBreak longPage
-
-Não quase iguais?
------------------------------------
-
-.. code-block:: python
-
-    a = 1.21
-    b = 1.22
-    #sao iguais ate a primeira casa
-    self.assertAlmostEqual(a,b,1)
-    #diferentes depois da segunda casa
-    self.assertNotAlmostEqual(a,b,2)
-
-    
-.. raw:: pdf
-
-  PageBreak longPage
-
-
-           
-                    
-Assets que eu não uso
------------------------
-
-.. code-block:: python
-
-                        
-    TestCase.assertRaises                   
-
-
-Testo assim:
------------------------
-
-.. code-block:: python
-
-    try:                                                                                                                                                
-        foobar.bang():
-        self.fail('Bang tem que explodir')                                                                                                          
-    except ExplodingException:                                                                                                                                
-         pass
-
 
 .. raw:: pdf
 
   PageBreak simplePage
 
 
-Testar não é díficil, Você só precisa começar
------------------------------------------------
+TDD não é díficil. Díficil é não fazer quando voce acostuma
+-------------------------------------------------------------
+
+Créditos
+--------
+
+.. code-block:: python
+
+    http://www.flickr.com/photos/blue-moose/3528603529
 
 Dúvidas?
 --------
 
+Agradecimentos
+---------------
+
+http://associacao.python.org.br/
+
+Nos vemos na PythonBrasil[6] em Curitiba 
+
+Outubro 21 a 23 
 
 Referências
 -----------
 
 .. code-block:: python
 
+    http://code.google.com/p/python-nose/
+    http://github.com/jbalogh/django-nose
+    http://github.com/garethr/django-test-extensions
     github.com/ericholscher/django-test-utils
     github.com/ctb/pony-build
 

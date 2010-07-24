@@ -51,6 +51,14 @@
         "showHeader" : false,
         "showFooter" : false,
         "background" : "background.png"
-    }
+    },
+    "imagePage": {
+        "frames": [
+            ["10%", "0%", "100%", "100%"]
+        ],
+        "showHeader" : false,
+        "showFooter" : false,
+        "background" : "background.png"
+    }    
 }
 }
