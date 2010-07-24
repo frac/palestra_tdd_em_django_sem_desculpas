@@ -9,7 +9,7 @@ ADMINS = (
 
 MANAGERS = ADMINS
 PROJECT_PATH = os.path.abspath(os.path.split(__file__)[0])
-#TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 DATABASES = {
     'default': {
@@ -78,9 +78,9 @@ TEMPLATE_LOADERS = (
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-#    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-#    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
 )
 
 ROOT_URLCONF = 'foobar.urls'
@@ -97,7 +97,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.admin', #opcional
 #    'south',
-#    'django_nose',
+    'django_nose',
     'test_extensions',
     'test_utils',
     'forum',

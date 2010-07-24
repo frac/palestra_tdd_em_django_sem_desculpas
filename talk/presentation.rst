@@ -122,8 +122,6 @@ Não depende da gerência
 
 
     
-Então, chega de desculpas:
----------------------------
 
 TDD não é díficil. Díficil é não fazer quando voce acostuma
 ------------------------------------------------------------
@@ -134,9 +132,9 @@ TDD não é díficil. Díficil é não fazer quando voce acostuma
   PageBreak simplePage
 
 
-Mas....
-----------------------------------
-
+    
+Então, chega de desculpas:
+---------------------------
 
 
 .. raw:: pdf
@@ -173,26 +171,72 @@ O ecossistema de testes no python
 Tipos de testes
 ---------------
 
-    * Doctest 
+Doctest 
+-------
 
-    * Unittest
+.. code-block:: python
 
-        unittest.TestCase 
+    def add(a,b):
+      """
+      testa a soma
+      >>> add(1,2)
+      3
+      """
+      return a + b
+
+
+Unittest
+--------
+
+unittest.TestCase 
         
-        django.test.TestCase
+django.test.TestCase
 
+
+django.test.TestCase
+--------------------
+
+.. code-block:: python
+
+    from django.test import TestCase
+
+    class SimpleTest(TestCase):
+      def test_basic_addition(self):
+        """
+        Tests that 1 + 1 always equals 2.
+        """
+        self.failUnlessEqual(1 + 1, 2)
 
 Sabores de testes
 ------------------------------
 
-    * Unitários 
-       Nível de função
+Unitários 
+----------
+Nível de função
 
-    * Integração
-       Entre Módulos
+.. code-block:: python
 
-    * De Regressão
-       Correção de bugs
+    self.assertTrue(add(1,2),3)
+
+
+Integração
+----------
+Entre Módulos
+
+.. code-block:: python
+
+    r = self.client.get('/foo')
+    self.assertRedirects(r,'/login/')
+    self.client.login(user_name='foo'
+                          ,password='bar')
+    r = self.client.get('/foo')
+    self.assertEquals(r.status_code,200)
+    
+
+De Regressão
+-------------
+
+Correção de erros
 
 
 TestRunners
@@ -235,17 +279,15 @@ Meu estilo
   PageBreak excusePage
 
 
-Eu não preciso de testes automatizados
----------------------------------------
+Por que eu preciso de testes automatizados?
+-------------------------------------------
 
-Gente que faz testes é porque não tem autoconfiança
-----------------------------------------------------
 
 .. raw:: pdf
 
   PageBreak longPage
 
-Código evolve constantemente
+Código evolve 
 -----------------------------
 
 
@@ -284,8 +326,8 @@ Felicidade é um código com boa cobertura
   PageBreak excusePage
 
 
-Eu meio que sei o que é TDD
-----------------------------
+Eu meio que não sei o que é TDD
+--------------------------------
 
 
 .. raw:: pdf
@@ -304,8 +346,8 @@ Test Driven Development é tanto sobre testes assim quanto a ciência da computa
 TDD é sobre desenvolvimento e qualidade
 ----------------------------------------
 
-Código evolve
---------------
+Testes são um subproduto
+-------------------------
 
 
 TDD
@@ -363,7 +405,7 @@ settings.py
     PROJECT_PATH = os.path.abspath(
                         os.path.split(__file__)[0])
     ...
-    config database
+    configura o banco
     ...
     TEMPLATE_DIRS = (                                                                                                                                           
         os.path.join(PROJECT_PATH,'templates'),                                                                                                                 
@@ -390,9 +432,9 @@ Hora de testar
 TDD
 -------
 
-Só escreve código quando testes falham
+Só escreve **código** quando testes falham
 
-Só escreve teste quando testes passam
+Só escreve **teste** quando testes passam
 
 
 
@@ -481,9 +523,8 @@ Testa
 
   PageBreak longPage
 
-Opa?
------------
-0 testes?
+0 testes!
+---------
 
 nose
 ----
@@ -543,17 +584,17 @@ Testa de novo
 TDD
 -------
 
-Só escreve código quando testes falham
+Só escreve **código** quando testes falham
 
-Só escreve teste quando testes passam
+Só escreve **teste** quando testes passam
 
 Falhou
 --------------------------
 
 Escreve código 
 
-forum/models.py
----------------
+vi forum/models.py
+--------------------
 
 .. code-block:: python
 
@@ -595,10 +636,10 @@ e por lento eu quero dizer chato
 
   PageBreak simplePage
 
-Não quando você se acostuma
------------------------------
+No começo é
+------------
 
-O que me anima a fazer TDD
+Facilitadores
 ---------------------------
 
 .. raw:: pdf
@@ -612,8 +653,8 @@ Toda vez que você salva um arquivo ele rerola os testes
 
 Não confundir com Continous Integration
 
-test_extensions
----------------
+django test extensions
+-----------------------
 
 Faz isso para você
 
@@ -622,6 +663,16 @@ Ainda é um pouco tosco
 .. raw:: pdf
 
   PageBreak longPage
+
+
+django-test-extensions
+-----------------------
+
+.. code-block:: bash
+
+    $ pip install django-test-extensions    
+
+
 
 settings.py
 -----------
@@ -816,8 +867,8 @@ Testo assim:
     
 
 
-Eu começo com TDD mas acabo desistindo no meio
------------------------------------------------
+Toda vez que eu começo com TDD mas acabo desistindo no meio
+------------------------------------------------------------
 
 .. raw:: pdf
 
@@ -1009,8 +1060,23 @@ Você começa o servidor
     $ ./manage.py testmaker -a forum
 
 
-Navega enquanto ele faz os testes
+Cria testes para você
 ---------------------------------
+
+
+.. code-block:: bash
+
+    Handling app 'forum'
+    Logging tests to foobar/forum/tests/forum_testmaker.py
+    Appending to current log file
+    Inserting TestMaker logging server...
+    Validating models...
+    0 errors found
+
+    Django version 1.2.1, using settings 'foobar.settings'
+    Development server is running at http://127.0.0.1:8000/
+    Quit the server with CONTROL-C.
+
 
 
 Quando você termina
@@ -1071,11 +1137,11 @@ Agora é tarde demais para TDD, meu projeto já existe
 Pera! Olha só
 -----------------------
 
-    * Testes de Regressão
-
     * django_test_utils
 
-Testes de Regressão
+    * Testes de Regressão
+
+Seu melhor amigo
 -------------------
 
 Garante que um erro que aconteceu nunca mais volte a acontecer
@@ -1087,9 +1153,96 @@ Mesmo você não vai fazer mais nenhuma forma de teste você tem que fazer esta
 Testes de Regressão
 -------------------
 
-Encontrou um erro escreve um teste que falha por causa do erro
+Encontrou um erro 
+------------------
 
-Quando o teste falha corrige o erro
+.. code-block:: python
+
+  [24/Jul/2010 11:14:51] "GET / HTTP/1.1" 404 1946
+
+Escreve um teste que falha por causa do erro
+---------------------------------------------
+
+.. code-block:: bash
+
+   $ vi forum/test_regression.py
+
+
+cont
+-----
+
+.. code-block:: python
+    
+    #coding:utf8
+    from django.test import TestCase
+
+    class TestRegression(TestCase):
+        """testes de regressao"""
+
+
+cont+=1
+--------
+
+.. code-block:: python
+
+    def test_regress_home(self):
+      """Home precisa existir"""
+      r = self.client.get('/', {})
+      self.assertEqual(r.status_code, 200)
+ 
+
+Testa e falha
+---------------------------
+
+.. code-block:: python
+
+    ..E
+    ================================================
+    ERROR: Home precisa existir
+    ------------------------------------------------
+    Traceback (most recent call last):
+      File "foobar/forum/tests/test_regresssion.py", 
+                    line 10, in test_regress_home
+        r = self.client.get('/', {})
+       ...
+        raise TemplateDoesNotExist(name)
+    TemplateDoesNotExist: 404.html
+
+
+
+Corrige o erro
+--------------
+
+
+.. code-block:: python
+
+    from django.views.generic.simple import direct_to_template
+    urlpatterns = patterns('',
+        ...
+        (r'^$', direct_to_template, {'template': 'index.html'}),
+        ...
+    )
+
+.. code-block:: bash
+
+   $ vi templates/index.html
+
+Roda os testes e passa
+----------------------
+
+.. code-block:: python
+
+    nosetests --verbosity 1
+    ....
+    -----------------------
+    Ran 4 tests in 0.025s
+
+    OK
+
+
+
+Garantia que erros antigos não vão retornar para te assombrar
+--------------------------------------------------------------
 
 
 
