@@ -188,6 +188,7 @@ Doctest
 Unittest
 --------
 
+
 unittest.TestCase 
         
 django.test.TestCase
@@ -199,13 +200,13 @@ django.test.TestCase
 .. code-block:: python
 
     from django.test import TestCase
-
+    
     class SimpleTest(TestCase):
-      def test_basic_addition(self):
+      def test_adicao(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Testa que a adicao de 1 + 1 da 2.
         """
-        self.failUnlessEqual(1 + 1, 2)
+        self.assertEqual(1 + 1, 2)
 
 Sabores de testes
 ------------------------------
@@ -462,10 +463,10 @@ Meu estilo (v.2)
     rm tests.py
     mkdir tests
     touch tests/__init__.py
-    touch tests/test_topico.py
+    touch tests/test_models.py
 
 
-vi tests/test_topico.py
+vi tests/test_models.py
 ------------------------
 
 .. code-block:: python
@@ -486,7 +487,7 @@ Teste de importação
       try:                                                                                                                                                
         from foobar.forum.models import Topico                                                                                                         
       except ImportError:                                                                                                                                
-        self.fail('Não consegui importar') 
+        self.fail('Nao existe topico') 
 
 
 Inclui a app no projeto
@@ -559,6 +560,8 @@ settings.py
         'south', # migracoes
         'django_nose', # depois do south 
     )
+    #opcional
+    #NOSE_ARGS = ['--pdb-failures', ]
 
 
 
@@ -574,9 +577,9 @@ Testa de novo
     FAIL: O topico esta la?
     ------------------------------------
     Traceback (most recent call last):
-      File "test_topico", line 18, in test_existe
-        self.fail('Não consegui importar')
-    AssertionError: Não consegui importar
+      File "test_models", line 18, in test_existe
+        self.fail('Nao existe topico')
+    AssertionError: Nao existe topico
     ------------------------------------
     Ran 1 test in 0.003s
 
@@ -636,8 +639,33 @@ e por lento eu quero dizer chato
 
   PageBreak simplePage
 
-No começo é
-------------
+A primeira vez é lento
+-----------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+Entenda o que você esta testando
+---------------------------------
+
+.. code-block:: python
+
+      try:                                                                                                                                                
+        from foobar.forum.models import Topico                                                                                                         
+      except ImportError:                                                                                                                                
+        self.fail('Nao existe topico') 
+
+Não teste a framework
+------------------------------------
+
+Testa a **lógica da sua** applicação
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
 
 Facilitadores
 ---------------------------
@@ -857,6 +885,128 @@ Testo assim:
     except ExplodingException:                                                                                                                                
         pass
 
+
+.. raw:: pdf
+
+  PageBreak excusePage
+
+Agora é tarde demais para TDD, meu projeto já existe
+--------------------------------------------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+Pera! Olha só
+-----------------------
+
+    * Testes de Regressão
+    
+    * django_test_utils
+
+
+Seu melhor amigo
+-------------------
+
+Garante que um erro que aconteceu nunca mais volte a acontecer
+
+Usado por todos os grandes projetos de software livre
+
+Mesmo você não vai fazer mais nenhuma forma de teste você tem que fazer esta
+
+Testes de Regressão
+-------------------
+
+Encontrou um erro 
+------------------
+
+.. code-block:: python
+
+  [24/Jul/2010 11:14:51] "GET / HTTP/1.1" 404 1946
+
+Escreve um teste que falha por causa do erro
+---------------------------------------------
+
+.. code-block:: bash
+
+   $ vi forum/test_regression.py
+
+
+cont
+-----
+
+.. code-block:: python
+    
+    #coding:utf8
+    from django.test import TestCase
+
+    class TestRegression(TestCase):
+        """testes de regressao"""
+
+
+cont+=1
+--------
+
+.. code-block:: python
+
+    def test_regress_home(self):
+      """Home precisa existir"""
+      r = self.client.get('/', {})
+      self.assertEqual(r.status_code, 200)
+ 
+
+Testa e falha
+---------------------------
+
+.. code-block:: python
+
+    ..E
+    ================================================
+    ERROR: Home precisa existir
+    ------------------------------------------------
+    Traceback (most recent call last):
+      File "foobar/forum/tests/test_regresssion.py", 
+                    line 10, in test_regress_home
+        r = self.client.get('/', {})
+       ...
+        raise TemplateDoesNotExist(name)
+    TemplateDoesNotExist: 404.html
+
+
+
+Corrige o erro
+--------------
+
+
+.. code-block:: python
+
+    from django.views.generic.simple import direct_to_template
+    urlpatterns = patterns('',
+        ...
+        (r'^$', direct_to_template, {'template': 'index.html'}),
+        ...
+    )
+
+.. code-block:: bash
+
+   $ vi templates/index.html
+
+Roda os testes e passa
+----------------------
+
+.. code-block:: python
+
+    nosetests --verbosity 1
+    ....
+    -----------------------
+    Ran 4 tests in 0.025s
+
+    OK
+
+
+
+Garantia que erros antigos não vão retornar para te assombrar
+--------------------------------------------------------------
 
 
 
@@ -1121,127 +1271,6 @@ Eu conserto os testes depois
 
 PFFFFFFFFFF!
 ------------
-
-.. raw:: pdf
-
-  PageBreak excusePage
-
-Agora é tarde demais para TDD, meu projeto já existe
---------------------------------------------------------------
-
-.. raw:: pdf
-
-  PageBreak longPage
-
-Pera! Olha só
------------------------
-
-    * django_test_utils
-
-    * Testes de Regressão
-
-Seu melhor amigo
--------------------
-
-Garante que um erro que aconteceu nunca mais volte a acontecer
-
-Usado por todos os grandes projetos de software livre
-
-Mesmo você não vai fazer mais nenhuma forma de teste você tem que fazer esta
-
-Testes de Regressão
--------------------
-
-Encontrou um erro 
-------------------
-
-.. code-block:: python
-
-  [24/Jul/2010 11:14:51] "GET / HTTP/1.1" 404 1946
-
-Escreve um teste que falha por causa do erro
----------------------------------------------
-
-.. code-block:: bash
-
-   $ vi forum/test_regression.py
-
-
-cont
------
-
-.. code-block:: python
-    
-    #coding:utf8
-    from django.test import TestCase
-
-    class TestRegression(TestCase):
-        """testes de regressao"""
-
-
-cont+=1
---------
-
-.. code-block:: python
-
-    def test_regress_home(self):
-      """Home precisa existir"""
-      r = self.client.get('/', {})
-      self.assertEqual(r.status_code, 200)
- 
-
-Testa e falha
----------------------------
-
-.. code-block:: python
-
-    ..E
-    ================================================
-    ERROR: Home precisa existir
-    ------------------------------------------------
-    Traceback (most recent call last):
-      File "foobar/forum/tests/test_regresssion.py", 
-                    line 10, in test_regress_home
-        r = self.client.get('/', {})
-       ...
-        raise TemplateDoesNotExist(name)
-    TemplateDoesNotExist: 404.html
-
-
-
-Corrige o erro
---------------
-
-
-.. code-block:: python
-
-    from django.views.generic.simple import direct_to_template
-    urlpatterns = patterns('',
-        ...
-        (r'^$', direct_to_template, {'template': 'index.html'}),
-        ...
-    )
-
-.. code-block:: bash
-
-   $ vi templates/index.html
-
-Roda os testes e passa
-----------------------
-
-.. code-block:: python
-
-    nosetests --verbosity 1
-    ....
-    -----------------------
-    Ran 4 tests in 0.025s
-
-    OK
-
-
-
-Garantia que erros antigos não vão retornar para te assombrar
---------------------------------------------------------------
 
 
 

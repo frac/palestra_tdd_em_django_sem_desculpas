@@ -102,3 +102,6 @@ INSTALLED_APPS = (
     'test_utils',
     'forum',
 )
+
+NOSE_ARGS = ['--pdb-failures', ]
+
