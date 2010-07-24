@@ -366,7 +366,7 @@ TDD
 
 Só escreve **código** quando testes falham
 
-Só escreve **teste** quando testes passam
+Só escreve **testes** quando testes passam
 
 
 .. raw:: pdf
@@ -434,7 +434,7 @@ TDD
 
 Só escreve **código** quando testes falham
 
-Só escreve **teste** quando testes passam
+Só escreve **testes** quando testes passam
 
 
 
@@ -586,7 +586,7 @@ TDD
 
 Só escreve **código** quando testes falham
 
-Só escreve **teste** quando testes passam
+Só escreve **testes** quando testes passam
 
 Falhou
 --------------------------
@@ -651,7 +651,6 @@ Continous testing
 
 Toda vez que você salva um arquivo ele rerola os testes
 
-Não confundir com Continous Integration
 
 django test extensions
 -----------------------
