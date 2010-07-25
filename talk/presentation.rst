@@ -1309,8 +1309,8 @@ Referências
     http://code.google.com/p/python-nose/
     http://github.com/jbalogh/django-nose
     http://github.com/garethr/django-test-extensions
-    github.com/ericholscher/django-test-utils
-    github.com/ctb/pony-build
+    http://github.com/ericholscher/django-test-utils
+    http://github.com/ctb/pony-build
 
     Tdd em django sem desculpas
     @fractal
