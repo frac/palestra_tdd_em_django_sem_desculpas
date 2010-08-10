@@ -101,6 +101,7 @@ INSTALLED_APPS = (
     'test_extensions',
     'test_utils',
     'forum',
+    'lettuce.django'
 )
 
 NOSE_ARGS = ['--pdb-failures', ]
