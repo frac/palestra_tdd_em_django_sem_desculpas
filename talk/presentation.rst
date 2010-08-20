@@ -280,7 +280,7 @@ Meu estilo
   PageBreak excusePage
 
 
-Por que eu preciso de testes automatizados?
+Eu não preciso de testes automatizados
 -------------------------------------------
 
 
@@ -383,8 +383,17 @@ Eu nunca fiz muitos testes no Django
 
   PageBreak longPage
 
-Como fazer
--------------------------
+Como fazer: Instala o django
+-----------------------------
+
+.. code-block:: bash
+
+    $ easy_install pip
+    $ pip install django
+
+
+Cria o projeto
+---------------
 
 .. code-block:: bash
 
@@ -405,9 +414,10 @@ settings.py
     import os
     PROJECT_PATH = os.path.abspath(
                         os.path.split(__file__)[0])
-    ...
-    configura o banco
-    ...
+    DATABASES = {'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': '/tmp/foobar.db', } }
+
     TEMPLATE_DIRS = (                                                                                                                                           
         os.path.join(PROJECT_PATH,'templates'),                                                                                                                 
     ) 
@@ -474,7 +484,7 @@ vi tests/test_models.py
     #coding:utf8
     from django.test import TestCase                                                                                                                            
                                                                                                                                                                 
-    class TopicoTest(TestCase):                                                                                                                                  
+    class ModelTest(TestCase):                                                                                                                                  
 
 
 Teste de importação
@@ -542,6 +552,7 @@ django-nose
 
    $ pip install nose
    $ pip install django-nose
+   $ pip install NoseNotify #opcional
 
 .. raw:: pdf
 
@@ -560,8 +571,9 @@ settings.py
         'south', # migracoes
         'django_nose', # depois do south 
     )
-    #opcional
-    #NOSE_ARGS = ['--pdb-failures', ]
+    NOSE_ARGS = [ '--with-notify',
+        #'--pdb-failures',
+    ]
 
 
 
@@ -660,7 +672,7 @@ Entenda o que você esta testando
 Não teste a framework
 ------------------------------------
 
-Testa a **lógica da sua** applicação
+Teste a **lógica da sua** applicação
 
 .. raw:: pdf
 
@@ -731,6 +743,30 @@ ou ainda
 .. code-block:: bash
 
     $ ./manage.py runtester forum    
+
+
+Automagicamente
+-----------------------------------------------------------
+
+.. code-block:: bash
+
+    nosetests --verbosity 1 --with-notify forum
+    .....
+    -------------------------------------------
+    Ran 5 tests in 0.457s
+
+    OK
+    Destroying test database 'default'...
+    Creating test database 'default'...
+
+
+Bonus combo
+------------
+
+django-test-extensions com NoseNotify
+
+    .. image:: notify.png
+       :width: 80%
 
 
 .. raw:: pdf
@@ -1260,6 +1296,81 @@ Testes gerados
 
   PageBreak excusePage
     
+.. raw:: pdf
+
+  PageBreak excusePage
+    
+
+Não, não! Escrever testes é mais complicado que o problema, mesmo!
+------------------------------------------------------------------------------
+
+
+
+.. raw:: pdf
+
+  PageBreak simplePage
+
+Mocks e Stubs
+---------------
+
+Minta descaradamente para seu código
+------------------------------------
+
+.. raw:: pdf
+
+  PageBreak longPage
+
+
+Imagina algo assim:
+-------------------
+
+.. code-block:: python
+    
+    def calcula_queijo(request):
+        sanduba = request.session["sanduba"]
+        ....
+
+Não perca tempo
+----------------------------------------
+
+Colocar algo no session do request em um test case é chato
+
+
+
+Hora de mockear
+----------------
+
+Existem muitas ferramentas de mock para python
+
+Escolha uma e vai fundo.
+
+Não esqueça de RTFM
+
+Eu uso o fudge
+
+Instalar e usar
+----------------
+
+.. code-block:: bash
+
+   pip install fudge
+    
+Seu teste
+----------
+
+.. code-block:: python
+
+    import fudge
+    ...
+      def teste(self)
+        request = fudge.Fake().has_attr(
+                  session={'sanduba': Sanduba() })
+        calcula_queijo(request)
+        
+
+.. raw:: pdf
+
+  PageBreak excusePage
 
     
 Eu conserto os testes depois
