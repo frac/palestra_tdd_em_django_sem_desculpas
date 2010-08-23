@@ -54,7 +54,7 @@ equipe:  >40 pessoas numa mesma sala
 
 escopo: Webapp em Tomcat
 
-buzzwords: Bodyshop típico: PMI, cmms.. (< 1999)
+buzzwords: Bodyshop típico: cmms.. (< 1999)
 
 
 2.5 anos atrás
